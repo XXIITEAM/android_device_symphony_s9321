@@ -1,0 +1,23 @@
+# system.prop for s9321
+#
+
+persist.sys.usb.config=mtp,adb
+
+#NFC
+debug.nfc.fw_download=false
+debug.nfc.se=false
+
+rild.libpath=/system/lib/libril-icera.so
+ro.opengles.version = 131072
+wifi.interface=wlan0
+ap.interface=wlan0
+persist.tegra.nvmmlite = 1
+persist.wlan.ti.calibrated = 0
+ro.sf.override_null_lcd_density = 1
+persist.tegra.compositor=glcomposer
+ro.callvibrate.enable=true
+ro.com.google.clientidbase=android-nvidia
+ro.zygote.disable_gl_preload=true
+
+
+
