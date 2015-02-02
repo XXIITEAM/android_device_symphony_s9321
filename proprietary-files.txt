@@ -90,14 +90,12 @@ lib/hw/audio.usb.default.so
 lib/hw/audio.a2dp.default.so
 lib/hw/audio.primary.tegra.so
 lib/hw/audio.r_submix.default.so
-lib/hw/audio_policy.tegra.so
 lib/hw/hwcomposer.tegra.so
 lib/hw/gralloc.tegra.so
 lib/hw/sensors.ceres.so
 lib/hw/gps.tegra.so
 lib/hw/nfc.tegra.so
 lib/hw/ts.default.so
-lib/hw/camera.tegra.so
 
 lib/egl/egl.cfg
 lib/egl/libEGL_tegra.so
@@ -201,21 +199,25 @@ lib/libwfd_common.so
 lib/librm31080.so
 lib/libwfd_source.so
 lib/libwfd_sink.so
+lib/libmplmpu.so
 
-
+# framework
 framework/com.nvidia.graphics.jar
 
+# perm
 etc/permissions/com.nvidia.balancedpower.xml
 etc/permissions/com.nvidia.graphics.xml
 etc/permissions/com.nvidia.miracast.xml
 etc/permissions/com.nvidia.nvsi.xml
 etc/permissions/com.nvidia.nvstereoutils.xml
 
+# bluetooth
 etc/bluetooth/auto_pair_devlist.conf
 etc/bluetooth/bdaddr
 etc/bluetooth/bt_did.conf
 etc/bluetooth/bt_stack.conf
 
+# audio
 etc/audioConfig_qvoice_icera_pc400.xml
 etc/model_frontal.xml
 etc/enctune.conf
@@ -230,3 +232,4 @@ usr/idc/raydium_ts.idc
 usr/keylayout/tegra-max98090_Headphone_Jack.kl
 usr/keylayout/gpio-keys.kl
 
+lib/libinvensense_hal.so

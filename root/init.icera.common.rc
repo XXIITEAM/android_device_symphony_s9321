@@ -9,15 +9,13 @@
 on init
 
 # Export the global environment for code coverage
-    export GCOV_PREFIX /data/coverage
-    export GCOV_PREFIX_STRIP 0
+    export GCOV_PREFIX /data
+    export GCOV_PREFIX_STRIP 3
 
 # rild properties
     stop ril-daemon
-    chown radio system /dev/ttyGS0
-    chown radio system /dev/ttyGS1
-    chmod 660 /dev/ttyGS0
-    chmod 660 /dev/ttyGS1
+    chown radio radio /dev/ttyGS0
+    chown radio radio /dev/ttyGS1
 
 # icera generic properties
     setprop gsm.modem.powercontrol enabled
@@ -55,28 +53,14 @@ service icera-crashlogs /system/bin/icera-crashlogs
 # AT port forwarding service
 service at-port-forward /system/bin/at-port-forward
     user radio
-    group radio system
+    group radio
     disabled
 
 # Modem logging port forwarding service
 service log-port-forward /system/bin/log-port-forward
     user radio
-    group radio system
+    group radio
     disabled
-
-# Packet RNDIS forward activation
-service tm-rndis-start /system/bin/nwifup
-    user root
-    group root
-    disabled
-    oneshot
-
-# Packet RNDIS forward deactivation
-service tm-rndis-stop /system/bin/nwifdown
-    user root
-    group root
-    disabled
-    oneshot
 
 # Mock modem service
 service mock_modem /system/bin/mock_modem
@@ -95,10 +79,3 @@ service ril-daemon-test /system/bin/rild
     user root
     group radio cache inet misc audio sdcard_rw sdcard_r
     disabled
-
-on property:gsm.modem.icera.testmode.rndis=0
-    start tm-rndis-stop
-
-on property:gsm.modem.icera.testmode.rndis=1
-    start tm-rndis-start
-

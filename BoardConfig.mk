@@ -20,7 +20,7 @@
 # inherit from the proprietary version
 -include vendor/symphony/s9321/BoardConfigVendor.mk
 
-#TARGET_SPECIFIC_HEADER_PATH := device/symphony/s9321/include
+TARGET_SPECIFIC_HEADER_PATH := device/symphony/s9321/include
 
 # Architecture
 TARGET_CPU_ABI := armeabi-v7a
@@ -33,8 +33,8 @@ TARGET_ARCH_VARIANT_CPU := $(TARGET_CPU_VARIANT)
 
 # Board
 TARGET_BOARD_PLATFORM := tegra
-TARGET_TEGRA_VERSION := t114
-TARGET_TEGRA_FAMILY := t11x
+TARGET_TEGRA_VERSION := t148
+TARGET_TEGRA_FAMILY := t14x
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
@@ -52,25 +52,26 @@ TARGET_GLOBAL_CPPFLAGS += -fpic -fno-short-enums -pipe -funsafe-math-optimizatio
 TARGET_EXTRA_CFLAGS += $(call cc-option,  -marm -march=armv7-a)
 
 # Audio
-# BOARD_USES_GENERIC_AUDIO := false
-# BOARD_USES_ALSA_AUDIO := true
+BOARD_USES_GENERIC_AUDIO := false
+BOARD_USES_ALSA_AUDIO := true
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/symphony/s9321
-TARGET_KERNEL_CONFIG := tegra_stanip76_android_defconfig
+#TARGET_KERNEL_CONFIG := tegra_stanip76_android_defconfig
+TARGET_KERNEL_CONFIG := tegra_s9321_stanip76_defconfig
 #BOARD_KERNEL_CMDLINE := "androidboot.selinux=permissive"
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 14061404160
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 939524096
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 10000000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
 BOARD_FLASH_BLOCK_SIZE := 4096
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_HAS_LARGE_FILESYSTEM := true
 
-#BOARD_HARDWARE_CLASS := device/symphony/s9321/cmhw/
+BOARD_HARDWARE_CLASS := device/symphony/s9321/cmhw/
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := s9321
@@ -81,12 +82,11 @@ TARGET_OTA_ASSERT_DEVICE := s9321
 # Graphics
 USE_OPENGL_RENDERER := true
 NEED_WORKAROUND_CORTEX_A9_745320 := true
-#TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
 BOARD_EGL_NEEDS_LEGACY_FB := true
 TARGET_USES_GL_VENDOR_EXTENSIONS := true
 #BOARD_EGL_WORKAROUND_BUG_10194508 := true
-#TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 #BOARD_USE_MHEAP_SCREENSHOT := true
 #BOARD_EGL_SKIP_FIRST_DEQUEUE := true
 
@@ -100,10 +100,11 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+BOARD_WLAN_DEVICE                := bcmdhd
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-BOARD_WLAN_DEVICE                := bcmdhd#BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_HOSTAPD_DRIVER             := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_DRIVER_FW_PATH_STA          := "/data/misc/wifi/firmware/fw_bcmdhd.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/data/misc/wifi/firmware/fw_bcmdhd_apsta.bin"
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
