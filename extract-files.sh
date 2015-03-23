@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VENDOR=symphony
+VENDOR=wiko
 DEVICE=s9321
 
 mkdir ../../../.repo/local_manifests

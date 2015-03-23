@@ -171,7 +171,11 @@ etc/gps/gpsconfig.xml
 etc/ril_atc.config
 
 # sensors
-lib/libsensorservice.so
+#lib/libsensors.base.so
+#lib/libsensors.isl29018.so
+#lib/libsensors.mpl.so
+#lib/libsensors.isl29028.so
+#lib/libsensors.nvs_input.so
 
 #
 bin/fild
@@ -232,4 +236,3 @@ usr/idc/raydium_ts.idc
 usr/keylayout/tegra-max98090_Headphone_Jack.kl
 usr/keylayout/gpio-keys.kl
 
-lib/libinvensense_hal.so

@@ -18,9 +18,9 @@
 # by BoardConfigVendor.mk
 
 # inherit from the proprietary version
--include vendor/symphony/s9321/BoardConfigVendor.mk
+-include vendor/wiko/s9321/BoardConfigVendor.mk
 
-TARGET_SPECIFIC_HEADER_PATH := device/symphony/s9321/include
+TARGET_SPECIFIC_HEADER_PATH := device/wiko/s9321/include
 
 # Architecture
 TARGET_CPU_ABI := armeabi-v7a
@@ -56,10 +56,10 @@ BOARD_USES_GENERIC_AUDIO := false
 BOARD_USES_ALSA_AUDIO := true
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/symphony/s9321
+TARGET_KERNEL_SOURCE := kernel/wiko/s9321
 #TARGET_KERNEL_CONFIG := tegra_stanip76_android_defconfig
 TARGET_KERNEL_CONFIG := tegra_s9321_stanip76_defconfig
-#BOARD_KERNEL_CMDLINE := "androidboot.selinux=permissive"
+BOARD_KERNEL_CMDLINE := "androidboot.selinux=permissive"
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 14061404160
@@ -71,7 +71,7 @@ BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_HAS_LARGE_FILESYSTEM := true
 
-BOARD_HARDWARE_CLASS := device/symphony/s9321/cmhw/
+BOARD_HARDWARE_CLASS := device/wiko/s9321/cmhw/
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := s9321
@@ -82,7 +82,7 @@ TARGET_OTA_ASSERT_DEVICE := s9321
 # Graphics
 USE_OPENGL_RENDERER := true
 NEED_WORKAROUND_CORTEX_A9_745320 := true
-TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+#TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
 BOARD_EGL_NEEDS_LEGACY_FB := true
 TARGET_USES_GL_VENDOR_EXTENSIONS := true
@@ -112,7 +112,7 @@ WIFI_DRIVER_MODULE_ARG           := "iface_name=wlan0"
 WIFI_DRIVER_MODULE_NAME          := "bcmdhd"
 
 # TWRP RECOVERY
-TW_BOARD_CUSTOM_GRAPHICS := ../../../device/symphony/s9321/recovery/graphics.c
+TW_BOARD_CUSTOM_GRAPHICS := ../../../device/wiko/s9321/recovery/graphics.c
 DEVICE_RESOLUTION := 1080x1920
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 BOARD_USE_SKIA_LCDTEXT := true

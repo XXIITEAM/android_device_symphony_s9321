@@ -15,14 +15,14 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 $(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/symphony/s9321/cm_s9321.mk)
+$(call inherit-product, device/wiko/s9321/cm_s9321.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := s9321
 PRODUCT_NAME := cm_s9321
 PRODUCT_BRAND := WIKO
-PRODUCT_MODEL := HIGHWAY 4G CM11
-PRODUCT_MANUFACTURER := SYMPHONY
+PRODUCT_MODEL := HIGHWAY 4G CM12
+PRODUCT_MANUFACTURER := WIKO
 
 # Enable Torch
 PRODUCT_PACKAGES += Torch

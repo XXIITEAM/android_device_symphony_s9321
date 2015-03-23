@@ -69,7 +69,7 @@ on property:gsm.rfs.created=1
     chown radio system /sys/devices/platform/tegra_bbc_proxy/rf1v7_mode
     chown radio system /sys/devices/platform/tegra_bbc_proxy/rf1v7_microvolts
     symlink /sys/devices/platform/tegra_bbc_proxy/rf1v7_mode /data/rfs/data/remotes/rf/rf1v7_mode
-    symlink /sys/devices/platform/tegra_bbc_proxy/rf1v7_micrmvolts /data/rfs/data/remotes/rf/rf1v7_voltage
+    symlink /sys/devices/platform/tegra_bbc_proxy/rf1v7_microvolts /data/rfs/data/remotes/rf/rf1v7_voltage
 
     # RF2V7
     chown radio system /sys/devices/platform/tegra_bbc_proxy/rf2v65_mode

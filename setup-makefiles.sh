@@ -1,4 +1,4 @@
-VENDOR=symphony
+VENDOR=wiko
 DEVICE=s9321
 OUTDIR=vendor/$VENDOR/$DEVICE
 MAKEFILE=../../../$OUTDIR/$DEVICE-vendor-blobs.mk
