@@ -15,7 +15,7 @@
 #
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-$(call inherit-product-if-exists, vendor/symphony/s9321/s9321-vendor.mk)
+$(call inherit-product-if-exists, vendor/wiko/s9321/s9321-vendor.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
@@ -114,4 +114,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := full_s9321
 PRODUCT_DEVICE := s9321
 PRODUCT_MODEL := HIGHWAY 4G CM11
-PRODUCT_MANUFACTURER := SYMPHONY
+PRODUCT_MANUFACTURER := WIKO
