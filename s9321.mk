@@ -28,7 +28,7 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 PRODUCT_AAPT_CONFIG += normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
-LOCAL_PATH := device/symphony/s9321
+LOCAL_PATH := device/wiko/s9321
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
