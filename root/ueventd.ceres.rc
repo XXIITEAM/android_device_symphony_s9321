@@ -25,6 +25,7 @@
 /dev/tegra_dc*	0660	system	system
 /dev/ttySHM*	0660	radio	system
 /dev/ttySHM2	0660	media	system
+/dev/ttySHM7	0660	wifi	system
 /dev/ttyS0		0660	root	radio
 /dev/ttyACM*	0660	radio	system
 /dev/ttyACM2	0660	radio	log
