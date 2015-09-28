@@ -50,6 +50,13 @@ on fs
     setprop ro.crypto.fuse_usbdrive false
 
     mount_all /fstab.ceres
+    
+   # for sts
+	mkdir /mnt/modem/secro
+	chown system system /mnt/modem/secro
+	mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/APP /system noatime rw wait
+	symlink /mnt/modem/secro /system/secro
+	mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/APP /system noatime ro remount
 
 on post-fs-data
     mkdir /data/misc/wifi 0770 wifi wifi
@@ -93,6 +100,9 @@ on post-fs-data
     chmod 0770 /mnt/modem/data/factory
 
 on boot
+
+    setprop gsm.modem.fild.args "--scheme 2 -f /dev/ttySHM0 --no-coredump"
+    setprop ril.modem.logging.args "-l 3"
 
 # bluetooth
     # change back to bluetooth from system
@@ -163,6 +173,8 @@ on boot
     chown system system	/mnt/modem/gs_cali_data
     chmod 0660 /mnt/modem/gs_hal_cali_data
     chmod 0660 /mnt/modem/gs_cali_data
+    chown system system /mnt/modem/inv_cal_data.bin
+    chmod 0660 /mnt/modem/inv_cal_data.bin
 
 
 # vibrator
@@ -653,7 +665,7 @@ service iprenew_eth0 /system/bin/dhcpcd -n
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
      class late_start
 
-service fuse_usbdrive /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/usbdrive /storage/usbdrive
+service fuse_usbdrive /system/bin/sdcard -u 1023 -g 1023 -w 1015 -d /mnt/media_rw/usbdrive /storage/usbdrive
     class late_start
     disabled
 
