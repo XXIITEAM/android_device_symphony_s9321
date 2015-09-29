@@ -82,15 +82,6 @@ on post-fs-data
     chown gps system /data/gps/
     chmod 0770 /data/gps/
 
-    chmod 0600 /dev/bcm2079x
-    chown nfc nfc /dev/bcm2079x
-    mkdir /data/nfc
-    mkdir /data/nfc/param
-    chmod 0700 /data/nfc
-    chmod 0700 /data/nfc/param
-    chown nfc nfc /data/nfc
-    chown nfc nfc /data/nfc/param
-
     # Set modem data permissions.
     chown root root /mnt/modem
     chmod 0755 /mnt/modem
@@ -146,8 +137,6 @@ on boot
     chown system audio /d/clock/floor.emc/rate
     chown system audio /d/clock/floor.emc/refcnt
 
-#NFC
-    setprop ro.nfc.port "I2C"
 
 # nvdps
     chown system system /sys/class/graphics/fb0/device/nvdps
@@ -789,13 +778,6 @@ service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-on property:persist.commchip_device=0xa94d
-    symlink /system/etc/libnfc-brcm-43341.conf /data/nfc/libnfc-brcm.conf
-    symlink /system/etc/libnfc-brcm-43341b00.conf /data/nfc/libnfc-brcm-43341b00.conf
-
-on property:persist.commchip_device=0x4335
-    symlink /system/etc/libnfc-brcm-4335.conf /data/nfc/libnfc-brcm.conf
-    symlink /system/etc/libnfc-brcm-20791b04.conf /data/nfc/libnfc-brcm-20791b04.conf
 
 on property:gsm.modem.config=1
     start config_modem
