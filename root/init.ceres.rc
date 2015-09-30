@@ -6,12 +6,15 @@
 #documentation without an express license agreement from NVIDIA Corporation
 #is strictly prohibited.
 
+pr_info("PRISCIOU:import init.nv_dev_board.usb.rc\n")
 import init.nv_dev_board.usb.rc
 
 # Set up HDCP
+pr_info("PRISCIOU:import init.hdcp.rc\n")
 import init.hdcp.rc
 
 # Nvidia baseband integration
+pr_info("PRISCIOU:import init.modem_${ro.boot.modem}.rc\n")
 import init.modem_${ro.boot.modem}.rc
 
 on early-init
@@ -41,6 +44,7 @@ on init
     symlink /mnt/media_rw/usbdrive /usbdrive
 
     # set size of zram as 2047MB
+    pr_info("PRISCIOU:write /sys/class/block/zram0/disksize 2047M\n")
     write /sys/class/block/zram0/disksize 2047M
 
 on fs
@@ -49,6 +53,7 @@ on fs
     setprop ro.crypto.fuse_sdcard true
     setprop ro.crypto.fuse_usbdrive false
 
+    pr_info("PRISCIOU:mount_all /fstab.ceres\n")
     mount_all /fstab.ceres
     
    # for sts
@@ -78,11 +83,13 @@ on post-fs-data
     setprop vold.post_fs_data_done 1
 
     # Create GPS folders and set its permissions
+    pr_info("PRISCIOU:GPS\n")
     mkdir /data/gps
     chown gps system /data/gps/
     chmod 0770 /data/gps/
 
     # Set modem data permissions.
+    pr_info("PRISCIOU:modem\n")
     chown root root /mnt/modem
     chmod 0755 /mnt/modem
     chown root radio /mnt/modem/data
@@ -128,6 +135,7 @@ on boot
     setprop wifi.rx-filter 1
 
 # audio
+    pr_info("PRISCIOU:audio\n")
     chmod 0664 /sys/power/suspend/mode
     chown system audio /sys/power/suspend/mode
     chmod 0664 /d/clock/floor.emc/state
@@ -147,6 +155,7 @@ on boot
     chown system system /sys/class/backlight/lm3528_display_bl/brightness
 
 # leds
+    pr_info("PRISCIOU:leds\n")
     chown system system /sys/devices/platform/tegra14-i2c.4/i2c-4/4-0023/max77660-leds/enable
     chown system system /sys/devices/platform/tegra14-i2c.4/i2c-4/4-0023/max77660-leds/brightness
     chown system system /sys/devices/platform/tegra14-i2c.4/i2c-4/4-0023/max77660-leds/onms
@@ -167,6 +176,7 @@ on boot
 
 
 # vibrator
+    pr_info("PRISCIOU:vibrator\n")
     chown system system /sys/class/input/event1/device/device/vibrator_enable
     chown system system /sys/class/input/event2/device/device/vibrator_enable
 
@@ -190,6 +200,7 @@ on boot
 #    chmod 0666 /dev/rmi0
 
 # Sensor
+    pr_info("PRISCIOU:sensor\n")
     chown system system /sys/bus/iio/devices/iio:device1/in_illuminance_regulator_enable
     chown system system /sys/bus/iio/devices/iio:device1/in_illuminance_enable
     chown system system /sys/bus/iio/devices/iio:device1/in_proximity_regulator_enable
@@ -533,6 +544,7 @@ service set_hwui_params /system/bin/set_hwui_params.sh
     oneshot
 
 # Set Zram parameters and initialise it as swap
+    pr_info("PRISCIOU:zram\n")
 service init_zram /system/bin/init_zram.sh
     class main
     user root
@@ -650,7 +662,7 @@ service iprenew_eth0 /system/bin/dhcpcd -n
     disabled
     oneshot
 
-
+    pr_info("PRISCIOU:service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated\n")
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
      class late_start
 
@@ -658,6 +670,7 @@ service fuse_usbdrive /system/bin/sdcard -u 1023 -g 1023 -w 1015 -d /mnt/media_r
     class late_start
     disabled
 
+pr_info("PRISCIOU:swapsd\n")
 service swapsd /system/bin/sh /swapsd.sh
     class core
     user root
@@ -724,6 +737,7 @@ on charger
 import init.tlk.rc
 
 # Enable PowerService
+ pr_info("PRISCIOU:powerservice\n")
 service powerservice /system/bin/powerservice
     class main
     user system
