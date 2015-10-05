@@ -49,7 +49,7 @@ on fs
     setprop ro.crypto.fuse_sdcard true
     setprop ro.crypto.fuse_usbdrive false
 
-    mount_all /fstab.ceres
+    mount_all /fstab.re.ceres
 
 on post-fs-data
     mkdir /data/misc/wifi 0770 wifi wifi
@@ -58,10 +58,6 @@ on post-fs-data
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     mkdir /data/nvcam 0700 media camera
     chown dhcp dhcp /data/misc/dhcp
-    chown root shell /data/property
-    chmod 770 /data/property
-    chmod 777 /data/property/*
-	# */
 
     mkdir /data/misc/wminput 0776 system system
 
@@ -84,15 +80,9 @@ on post-fs-data
     chown nfc nfc /data/nfc
     chown nfc nfc /data/nfc/param
 
-    # Set modem data permissions.
-    chown root root /mnt/modem
-    chmod 0755 /mnt/modem
-    chown root radio /mnt/modem/data
-    chmod 0770 /mnt/modem/data
-    chown root radio /mnt/modem/data/factory
-    chmod 0770 /mnt/modem/data/factory
-
 on boot
+    setprop gsm.modem.fild.args "--scheme 2 -f /dev/ttySHM0 --no-coredump"
+    setprop ril.modem.logging.args "-l 3"
 
 # bluetooth
     # change back to bluetooth from system
@@ -163,7 +153,8 @@ on boot
     chown system system	/mnt/modem/gs_cali_data
     chmod 0660 /mnt/modem/gs_hal_cali_data
     chmod 0660 /mnt/modem/gs_cali_data
-
+	chown system system /mnt/modem/inv_cal_data.bin
+    chmod 0660 /mnt/modem/inv_cal_data.bin
 
 # vibrator
     chown system system /sys/class/input/event1/device/device/vibrator_enable
@@ -657,10 +648,6 @@ service fuse_usbdrive /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_r
     class late_start
     disabled
 
-service swapsd /system/bin/sh /swapsd.sh
-    class core
-    user root
-    oneshot
 
 # bugreport is triggered by the VOLUME-DOWN and VOLUME-UP keys
 service bugreport /system/bin/dumpstate -d -v -o /data/storage/bugreports/bugreport
@@ -691,33 +678,6 @@ on device-added-/sys/block/sda
 
 on device-removed-/sys/block/sda
   umount /mnt/media_rw/usbdrive
-
-on charger
-# Power management settings
-  write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/no_lp 0
-
-  write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor conservative
-  write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor conservative
-  write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor conservative
-  write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor conservative
-
-  write /sys/devices/system/cpu/cpufreq/conservative/up_threshold 80
-  write /sys/devices/system/cpu/cpufreq/conservative/down_threshold 50
-  write /sys/devices/system/cpu/cpufreq/conservative/freq_step 3
-
-  write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 1
-  write /sys/devices/system/cpu/cpuquiet/current_governor runnable
-  write /sys/module/cpuidle_t11x/parameters/cpu_power_gating_in_idle 31
-  write /sys/module/cpuidle_t11x/parameters/slow_cluster_power_gating_noncpu 1
-  write /sys/module/cpuidle/parameters/power_down_in_idle 1
-  
-  #write /sys/class/android_usb/android0/enable 0
-  #write /sys/class/android_usb/android0/idVendor 0955
-  #write /sys/class/android_usb/android0/idProduct 7100
-  #write /sys/class/android_usb/android0/functions adb
-  #write /sys/class/android_usb/android0/enable 1
-  #start adbd
-  #setprop sys.usb.state adb  
 
 # TLK storage service
 import init.tlk.rc

@@ -28,7 +28,7 @@ service fil-daemon /system/bin/fild
 
 # Start AGPS daemon
 service agps-daemon /system/bin/agpsd
-    class main
+    disabled
     user radio
     socket at_pal seqpacket 0666 radio system
     group system

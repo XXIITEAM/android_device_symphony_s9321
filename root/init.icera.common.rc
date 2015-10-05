@@ -36,13 +36,13 @@ on post-fs-data
     mkdir /data/rfs/data/debug
     chown radio system /data/rfs/data
     chown radio system /data/rfs/data/modem
-    chown radio log /data/rfs/data/debug
+    chown radio system /data/rfs/data/debug
     symlink /system/vendor/firmware/data/config /data/rfs/data/config
     symlink /system/vendor/firmware/app /data/rfs/app
     symlink /mnt/modem/data/factory /data/rfs/data/factory
     symlink /mnt/modem/data/modem /data/rfs/data/modem
     symlink /mnt/modem/data/persistent /data/rfs/data/persistent
-    chmod 775 /data/rfs/data/debug
+    chmod 2775 /data/rfs/data/debug
     setprop gsm.rfs.created 1
 
 # crashlogs service
@@ -55,7 +55,7 @@ service icera-crashlogs /system/bin/icera-crashlogs
 # AT port forwarding service
 service at-port-forward /system/bin/at-port-forward
     user radio
-    group radio
+    group radio system
     disabled
 
 # Modem logging port forwarding service
