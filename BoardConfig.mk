@@ -56,10 +56,11 @@ BOARD_USES_GENERIC_AUDIO := false
 BOARD_USES_ALSA_AUDIO := true
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/wiko/s9321
+TARGET_PREBUILT_KERNEL := device/wiko/s9321/kernel
+#TARGET_KERNEL_SOURCE := kernel/wiko/s9321
 #TARGET_KERNEL_CONFIG := tegra_stanip76_android_defconfig
-TARGET_KERNEL_CONFIG := tegra_s9321_stanip76_defconfig
-BOARD_KERNEL_CMDLINE := "androidboot.selinux=permissive"
+#TARGET_KERNEL_CONFIG := tegra_s9321_stanip76_defconfig
+#BOARD_KERNEL_CMDLINE := "androidboot.selinux=permissive"
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 14061404160

@@ -29,6 +29,14 @@ PRODUCT_AAPT_CONFIG += normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 LOCAL_PATH := device/wiko/s9321
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+		LOCAL_KERNEL := $(LOCAL_PATH)/kernel
+else
+		LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
+PRODUCT_COPY_FILES += \
+	$(LOCAL_KERNEL):kernel
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
