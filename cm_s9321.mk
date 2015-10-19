@@ -104,13 +104,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
 
-# NFC packages
-PRODUCT_PACKAGES += \
-    com.android.nfc_extras \
-    libnfc \
-    libnfc_jni \
-    Nfc \
-    Tag
 
 PRODUCT_PACKAGES += \
     libnetcmdiface
