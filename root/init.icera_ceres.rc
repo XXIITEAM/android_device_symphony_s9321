@@ -10,7 +10,7 @@ import init.icera.phone.rc
 
 on init
 # rild properties, with sim autodetect, bbc logical sim id is 0 for both slots
-    setprop rild.libargs "-ewwan0 -ewwan1 -ewwan2 -ewwan3 -ewwan4 -s0,2 -s0,1 -f20,36 -n"
+    setprop rild.libargs "-ewwan0 -ewwan1 -s0,2 -s0,1 -f20,36 -n"
 
 # fild properties
     setprop gsm.modem.fild.args "--scheme 2 -f /dev/ttySHM0"
@@ -26,7 +26,7 @@ on post-fs-data
 # BB mapping symbolic name to the logging ttySHM port
     symlink /dev/ttySHM4 /dev/log_modem
 # BB mapping symbolic name to the at ttySHM port
-    symlink /dev/ttySHM2 /dev/at_modem
+    symlink /dev/ttySHM10 /dev/at_modem
 # Power BB access for user radio
     chown radio system /sys/devices/platform/tegra_bb.0/reset
     chown radio system /sys/devices/platform/tegra_bb.0/ipc_size

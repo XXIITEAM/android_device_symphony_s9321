@@ -28,7 +28,7 @@ service fil-daemon /system/bin/fild
 
 # Start AGPS daemon
 service agps-daemon /system/bin/agpsd
-    class main
+    disabled
     user radio
     socket at_pal seqpacket 0666 radio system
     group system
@@ -38,10 +38,13 @@ on property:gsm.modem.crashlogs=1
 
 on property:gsm.modem.ril.enabled=0
     stop ril-daemon
+	stop agps-daemon
 
 on property:gsm.modem.ril.enabled=1
     stop ril-daemon
     start ril-daemon
+	stop agps-daemon
+    start agps-daemon
 
 on property:ril.testmode=2
     setprop ril.mock_modem.socketname "/dev/mock_modem"
@@ -64,7 +67,25 @@ on property:ril.testmode=0
     start fil-daemon
     start ril-daemon
 
-on property:gsm.modem.icera.testmode=1
+on property:persist.modem.icera.testmode=0
+    stop at-port-forward
+    stop log-port-forward
+    setprop persist.sys.usb.config "mtp,adb"
+    stop ril-daemon
+    stop fil-daemon
+    start fil-daemon
+
+on property:persist.modem.icera.testmode=1
+    setprop persist.sys.usb.config "rndis,acm,adb"
+    stop ril-daemon
+    stop fil-daemon
+    start fil-daemon
+    start at-port-forward
+    start log-port-forward
+
+on property:persist.modem.icera.testmode=2
+    setprop persist.sys.usb.config "rndis,acm,adb"
+    stop ril-daemon
     stop fil-daemon
     start fil-daemon
     start at-port-forward
