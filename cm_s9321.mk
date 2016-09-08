@@ -29,14 +29,6 @@ PRODUCT_AAPT_CONFIG += normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 LOCAL_PATH := device/wiko/s9321
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-		LOCAL_KERNEL := $(LOCAL_PATH)/kernel
-else
-		LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
-PRODUCT_COPY_FILES += \
-	$(LOCAL_KERNEL):kernel
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
@@ -112,6 +104,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
 
+# NFC packages
+PRODUCT_PACKAGES += \
+    com.android.nfc_extras \
+    libnfc \
+    libnfc_jni \
+    Nfc \
+    Tag
 
 PRODUCT_PACKAGES += \
     libnetcmdiface
@@ -140,5 +139,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := full_s9321
 PRODUCT_DEVICE := s9321
-PRODUCT_MODEL := HIGHWAY 4G CM11
+PRODUCT_MODEL := HIGHWAY 4G CM12
 PRODUCT_MANUFACTURER := WIKO

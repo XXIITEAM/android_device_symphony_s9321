@@ -94,6 +94,7 @@ lib/hw/hwcomposer.tegra.so
 lib/hw/gralloc.tegra.so
 lib/hw/sensors.ceres.so
 lib/hw/gps.tegra.so
+lib/hw/nfc.tegra.so
 lib/hw/ts.default.so
 
 lib/egl/egl.cfg
