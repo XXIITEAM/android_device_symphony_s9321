@@ -9,7 +9,7 @@ index b1c98eb..ea9ef2c 100644
  #else
  
 -#define THE_DEVICE "/sys/class/timed_output/vibrator/enable"
-+#define THE_DEVICE "/sys/devices/platform/tegra14-i2c.4/i2c-4/4-0023/max77660-vibrator/vibrator_enable"
++!define THE_DEVICE "/sys/devices/platform/tegra14-i2c.4/i2c-4/4-0023/max77660-vibrator/vibrator_enable"
  
  int vibrator_exists()
  {
