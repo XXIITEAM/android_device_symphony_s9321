@@ -7,5 +7,3 @@
 # is strictly prohibited.
 
 import init.icera_${ro.hardware}.rc
-
-

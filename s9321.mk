@@ -15,7 +15,7 @@
 #
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-$(call inherit-product-if-exists, vendor/symphony/s9321/s9321-vendor.mk)
+$(call inherit-product-if-exists, vendor/wiko/s9321/s9321-vendor.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
@@ -28,7 +28,7 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 PRODUCT_AAPT_CONFIG += normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
-LOCAL_PATH := device/symphony/s9321
+LOCAL_PATH := device/wiko/s9321
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
@@ -62,9 +62,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
-    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
-    frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
@@ -78,13 +75,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
 
-# NFC packages
-PRODUCT_PACKAGES += \
-    com.android.nfc_extras \
-    libnfc \
-    libnfc_jni \
-    Nfc \
-    Tag
 
 PRODUCT_PACKAGES += \
     libnetcmdiface
@@ -114,4 +104,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := full_s9321
 PRODUCT_DEVICE := s9321
 PRODUCT_MODEL := HIGHWAY 4G CM11
-PRODUCT_MANUFACTURER := SYMPHONY
+PRODUCT_MANUFACTURER := WIKO
